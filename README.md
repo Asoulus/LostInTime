@@ -9,4 +9,4 @@ Three times across which gameplay takes place:
 * Future
 
 # Preview
-![](Images/Logo.PNG)
+![](Images/LOGO.png)
