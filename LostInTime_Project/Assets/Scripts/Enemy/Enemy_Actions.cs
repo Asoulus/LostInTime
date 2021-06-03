@@ -35,7 +35,7 @@ public class Enemy_Actions : MonoBehaviour
     //[SerializeField]
     //private float _nextWanderCheck = 0f;
     private NavMeshHit _navHit;
-    private Vector3 _wanderTarget;
+    public Vector3 _wanderTarget;
 
     #endregion
 
@@ -251,6 +251,7 @@ public class Enemy_Actions : MonoBehaviour
     private bool RandomWanderTarget()
     {
         Vector3 randomPoint = transform.position + Random.insideUnitSphere * _wanderRange;
+        Debug.Log(randomPoint);
 
         //sprawdz czy moze tam isc
         if (NavMesh.SamplePosition(randomPoint, out _navHit, 1f, NavMesh.AllAreas)) 
