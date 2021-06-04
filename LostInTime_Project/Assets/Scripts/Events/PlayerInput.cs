@@ -43,5 +43,10 @@ public class PlayerInput : MonoBehaviour
         {
             PlayerInputHandler.instance.ScrollWheelUsed(Input.GetAxis("Mouse ScrollWheel"));
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Player_Master.instance.CallEventPlayerHeal(50f); //TODO Figure out amount
+        }
     }
 }
