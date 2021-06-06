@@ -17,8 +17,6 @@ public class Player : MonoBehaviour
     private int _healthPackAmount = 0;
     [SerializeField]
     private int _powerUpAmount = 0;
-    [SerializeField]
-    private int _ammoReserves = 0;
 
     [Header("References")]
     [SerializeField]
@@ -26,14 +24,65 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Player_Master _playerMaster = null;
 
-    [Header("UI")]
+    [Header("Main UI")]
     [SerializeField]
     private Text _healthPackAmountUIText = null;
-
     [SerializeField]
     private Text _powerUpAmountUIText = null;
 
     public Camera cam = null;
+
+    #region Weapons
+
+    #region Weapon UI
+    [Header("Weapon UI")]
+    //Primary weapon
+    [SerializeField]
+    private Image _primaryWeaponImage = null;
+    [SerializeField]
+    private Text _primaryWeaponClipText = null;
+    [SerializeField]
+    private Text _primaryWeaponReserveText = null;
+
+    //Secondary weapon
+    [SerializeField]
+    private Image _secondaryWeaponImage = null;
+    [SerializeField]
+    private Text _secondaryWeaponClipText = null;
+    [SerializeField]
+    private Text _secondaryWeaponReserveText = null;
+
+
+    #endregion
+
+    #region Equiped weapons
+
+    [Header("Equiped weapons")]
+
+    [SerializeField]
+    private RangeWeapon _currentPrimaryWeapon = null;
+    [SerializeField]
+    private RangeWeapon _currentSecondaryWeapon = null;
+    [SerializeField]
+    private RangeWeapon _currentlyHeldWeapon = null;
+    
+
+    #endregion
+
+    #region Weapon Prefabs
+    [Header("Weapon Prefabs")]
+    [SerializeField]
+    private GameObject _revolver;
+
+    #endregion
+
+    [SerializeField]
+    private float _nextFire = 0;
+
+    [SerializeField]
+    private float _nextSwap = 0;
+
+    #endregion
 
     private void Awake()
     {
@@ -46,6 +95,122 @@ public class Player : MonoBehaviour
 
         _playerMaster.EventPlayerTakeDamage += TakeDamage;
         _playerMaster.EventPlayerHeal += Heal;
+        PlayerInputHandler.instance.onLeftMouseButtonPressed += Fire;
+        PlayerInputHandler.instance.onReloadButtonPressed += Reload;
+        PlayerInputHandler.instance.onOneButtonPressed += SwapWeapons;
+        PlayerInputHandler.instance.onTwoButtonPressed += SwapWeapons;
+
+        UpdateAmmoUI();
+    }
+
+    private void SetInitialReferences()
+    {
+        _currentHealth = _maxHealth;
+        _healthBar.maxValue = _maxHealth;
+        _healthBar.value = _maxHealth;
+
+        _primaryWeaponImage.sprite = _currentPrimaryWeapon.WeaponUIImage;
+        _secondaryWeaponImage.sprite = _currentSecondaryWeapon.WeaponUIImage;
+
+        if (_currentlyHeldWeapon = _currentPrimaryWeapon)
+        {
+            _currentSecondaryWeapon.gameObject.SetActive(false);
+        }
+        else
+        {
+            _currentPrimaryWeapon.gameObject.SetActive(false);
+        }
+
+        cam = GetComponentInChildren<Camera>();
+        _playerMaster = GetComponent<Player_Master>();
+    }
+
+    private void SwapWeapons(int value)
+    {
+        if (!_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.FireAnimationName))
+            return;
+
+        if (Time.time > _nextSwap)
+        {
+            _nextSwap = Time.time + 1f;
+        }
+        else
+        {
+            return;
+        }
+
+        if (value == 1)
+        {
+            if (_currentlyHeldWeapon == _currentSecondaryWeapon)
+            {
+                _currentlyHeldWeapon.MyAnimator.SetTrigger("Stow");
+                StartCoroutine(SwapDelay(_currentPrimaryWeapon));
+            }          
+        }
+        else
+        {
+            if (_currentlyHeldWeapon == _currentPrimaryWeapon)
+            {
+                _currentlyHeldWeapon.MyAnimator.SetTrigger("Stow");
+                StartCoroutine(SwapDelay(_currentSecondaryWeapon));
+            }
+        }
+    }
+
+    private IEnumerator SwapDelay(RangeWeapon weapon)
+    {
+        yield return new WaitForSeconds(0.4f);
+        _currentlyHeldWeapon.gameObject.SetActive(false);
+        _currentlyHeldWeapon = weapon;
+        _currentlyHeldWeapon.gameObject.SetActive(true);
+        _currentlyHeldWeapon.MyAnimator.SetTrigger("Ready");
+    }
+
+
+    private void Update()
+    {
+        //Debug.Log(_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).length);
+        //Debug.Log(_revolverAnimator.GetCurrentAnimatorStateInfo(0).IsName(_revolverIdleClipName));
+        //Debug.Log(_revolverAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+    }
+
+    public void UpdateAmmoUI()
+    {
+        _primaryWeaponClipText.text = _currentPrimaryWeapon.CurrentClip.ToString();
+        _primaryWeaponReserveText.text = _currentPrimaryWeapon.CurrentReserve.ToString();
+
+        _secondaryWeaponClipText.text = _currentSecondaryWeapon.CurrentClip.ToString();
+        _secondaryWeaponReserveText.text = _currentSecondaryWeapon.CurrentReserve.ToString();
+    }
+
+    public void Fire()
+    {
+        if (_currentlyHeldWeapon.CurrentClip <= 0)
+            return;
+
+        if (_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.FireAnimationName) && Time.time > _nextFire)
+        {
+            _nextFire = Time.time + _currentlyHeldWeapon.RateOfFire;
+            _currentlyHeldWeapon.MyAnimator.SetTrigger("Fire");
+            _currentlyHeldWeapon.Shoot();
+            
+        }
+  
+    }
+
+    public void Reload()
+    {
+        if (_currentlyHeldWeapon.CurrentReserve <= 0)
+            return;
+
+        if (_currentlyHeldWeapon.CurrentClip == _currentlyHeldWeapon.ClipSize)
+            return;
+
+        if (!_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.FireAnimationName))
+            return;
+
+        _currentlyHeldWeapon.MyAnimator.SetTrigger("Reload");
+        _currentlyHeldWeapon.Reload();
     }
 
     public void PickUpHealthPack()
@@ -62,8 +227,7 @@ public class Player : MonoBehaviour
 
     public void PickUpAmmo()
     {
-        _ammoReserves++;
-        Debug.Log("AMMO");
+        //TODO implement
     }
 
     private void TakeDamage(float damage)
@@ -93,20 +257,16 @@ public class Player : MonoBehaviour
         _healthPackAmountUIText.text = _healthPackAmount.ToString();
     }
 
-    private void SetInitialReferences()
-    {
-        _currentHealth = _maxHealth;
-        _healthBar.maxValue = _maxHealth;
-        _healthBar.value = _maxHealth;
-
-        cam = GetComponentInChildren<Camera>();
-        _playerMaster = GetComponent<Player_Master>();
-    }
+    
 
     private void OnDisable()
     {
         _playerMaster.EventPlayerTakeDamage -= TakeDamage;
         _playerMaster.EventPlayerHeal -= Heal;
+        PlayerInputHandler.instance.onLeftMouseButtonPressed -= Fire;
+        PlayerInputHandler.instance.onReloadButtonPressed -= Reload;
+        PlayerInputHandler.instance.onOneButtonPressed -= SwapWeapons;
+        PlayerInputHandler.instance.onTwoButtonPressed -= SwapWeapons;
     }
 
 

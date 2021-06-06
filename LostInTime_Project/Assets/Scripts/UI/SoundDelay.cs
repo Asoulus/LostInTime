@@ -13,7 +13,7 @@ public class SoundDelay : MonoBehaviour
 
     private IEnumerator TurnSoundBackOn()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         AudioListener.volume = 1;
     }
 

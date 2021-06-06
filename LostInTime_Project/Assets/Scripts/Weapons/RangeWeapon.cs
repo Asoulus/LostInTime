@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class RangeWeapon : MonoBehaviour
 {
@@ -14,11 +13,17 @@ public class RangeWeapon : MonoBehaviour
     [SerializeField]
     private float _destroyDelay = 5f;
     [SerializeField]
-    private float _fireRate = 0.5f;
+    private float _rateOfFire = 0.5f;
     [SerializeField]
     private bool _isHitscan = false;
-
-    private bool _canFire = true;
+    [SerializeField]
+    private int _clipSize = 0;
+    [SerializeField]
+    private int _currentClip = 0;
+    [SerializeField]
+    private int _reserveSize = 0;
+    [SerializeField]
+    private int _currentReserve = 0;
 
 
     
@@ -32,7 +37,46 @@ public class RangeWeapon : MonoBehaviour
     [SerializeField]
     private ParticleSystem _hitEffect = null;    
     [SerializeField]
-    private ParticleSystem _muzzleFlash = null; 
+    private Sprite _weaponUIImage = null;
+    [SerializeField]
+    private Animator _myAnimator;
+    [SerializeField]
+    private string _idleAnimationName = string.Empty;
+
+    public int CurrentClip
+    {
+        get => _currentClip;
+    }
+
+    public int ClipSize
+    {
+        get => _clipSize;
+    }
+
+    public int CurrentReserve
+    {
+        get => _currentReserve;
+    }
+
+    public float RateOfFire
+    {
+        get => _rateOfFire;
+    }
+
+    public Animator MyAnimator
+    {
+        get => _myAnimator;
+    }
+
+    public string FireAnimationName
+    {
+        get => _idleAnimationName;
+    }
+
+    public Sprite WeaponUIImage
+    {
+        get => _weaponUIImage;
+    }
 
     void Start()
     {
@@ -41,20 +85,16 @@ public class RangeWeapon : MonoBehaviour
 
     private void SetInitialReferences()
     {
+        _myAnimator = GetComponent<Animator>();
         _projectilePrefab.GetComponent<Projectile>().damage = _damage;
-        //TODO zrobic referencje do kamery w innym skrypcie i przypisac tutaj
+        _playerCamera = Player.instance.cam;
 
+        //_idleAnimationName = _myAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name; -> daje animacje wyjmowania a nie idle
     }
 
-    private void OnEnable()
+    public void Shoot()
     {
-        //TODO subskrypcja do input_managera
-    }
-
-    private IEnumerator Shoot()
-    {
-        _muzzleFlash.Play();
-        _canFire = false;
+        _currentClip -= 1;
 
         if (_isHitscan)
         {
@@ -80,8 +120,24 @@ public class RangeWeapon : MonoBehaviour
             SpawnProjectile();
         }
 
-        yield return new WaitForSeconds(_fireRate);
-        _canFire = true;
+
+        Player.instance.UpdateAmmoUI();
+    }   
+
+    public void Reload()
+    {
+        if (_currentReserve >= _clipSize)
+        {
+            _currentClip = _clipSize;
+            _currentReserve -= _clipSize;
+        }
+        else
+        {
+            _currentClip = _currentReserve;
+            _currentReserve = 0;
+        }
+
+        Player.instance.UpdateAmmoUI();
     }
 
     private void SpawnProjectile()
@@ -91,18 +147,4 @@ public class RangeWeapon : MonoBehaviour
         Destroy(tmpGO, _destroyDelay);
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1") && _canFire)
-        {
-            StartCoroutine(Shoot());
-        }
-    }
-
-    private void OnDisable()
-    {
-        //TODO Unsubskrypcja z input_managera
-    }
 }

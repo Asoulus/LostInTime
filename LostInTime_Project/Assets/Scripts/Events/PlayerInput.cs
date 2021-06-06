@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
             PlayerInputHandler.instance.InteractionButtonPressed();   //e         
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
             PlayerInputHandler.instance.LeftMouseButtonPressed();//left mouse
         }
