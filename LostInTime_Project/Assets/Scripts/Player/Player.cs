@@ -110,14 +110,14 @@ public class Player : MonoBehaviour
         PlayerInputHandler.instance.onOneButtonPressed += SwapWeapons;
         PlayerInputHandler.instance.onTwoButtonPressed += SwapWeapons;
 
-        
-
         UpdateAmmoUI();
     }
 
     private void SetInitialReferences()
     {
         _playerController = GetComponent<FirstPersonAIO>();
+
+        StartCoroutine(CrosshairCheck());
 
         _currentHealth = _maxHealth;
         _healthBar.maxValue = _maxHealth;
@@ -132,13 +132,19 @@ public class Player : MonoBehaviour
         _currentSecondaryWeapon.gameObject.SetActive(false);
     
 
+        
+
+        cam = GetComponentInChildren<Camera>();
+        _playerMaster = GetComponent<Player_Master>();
+    }
+
+    private IEnumerator CrosshairCheck()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (!_currentlyHeldWeapon.HasCrosshair)
         {
             _playerController.crosshairImage.sprite = _emptyCrosshair;
         }
-
-        cam = GetComponentInChildren<Camera>();
-        _playerMaster = GetComponent<Player_Master>();
     }
 
     private void SwapWeapons(int value)
