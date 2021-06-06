@@ -6,16 +6,13 @@ public class Projectile : MonoBehaviour
 {
     public float damage;
 
-    /*
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 9)
-        {
-            
-            collision.gameObject.GetComponent<BodyPart>().TakeDamage(damage);
-            Debug.Log("DMG");
-            Destroy(this.gameObject);
-        }      
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        transform.parent = collision.transform;
+        Destroy(GetComponent<Collider>());
     }
-    */
 }

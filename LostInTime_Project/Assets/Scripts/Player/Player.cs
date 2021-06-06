@@ -29,8 +29,18 @@ public class Player : MonoBehaviour
     private Text _healthPackAmountUIText = null;
     [SerializeField]
     private Text _powerUpAmountUIText = null;
+    [SerializeField]
+    private Sprite _crosshair = null;
+    [SerializeField]
+    private Sprite _emptyCrosshair = null;
+
+
+    #region GetComponented References
+    private FirstPersonAIO _playerController;
 
     public Camera cam = null;
+
+    #endregion
 
     #region Weapons
 
@@ -100,11 +110,15 @@ public class Player : MonoBehaviour
         PlayerInputHandler.instance.onOneButtonPressed += SwapWeapons;
         PlayerInputHandler.instance.onTwoButtonPressed += SwapWeapons;
 
+        
+
         UpdateAmmoUI();
     }
 
     private void SetInitialReferences()
     {
+        _playerController = GetComponent<FirstPersonAIO>();
+
         _currentHealth = _maxHealth;
         _healthBar.maxValue = _maxHealth;
         _healthBar.value = _maxHealth;
@@ -112,13 +126,15 @@ public class Player : MonoBehaviour
         _primaryWeaponImage.sprite = _currentPrimaryWeapon.WeaponUIImage;
         _secondaryWeaponImage.sprite = _currentSecondaryWeapon.WeaponUIImage;
 
-        if (_currentlyHeldWeapon = _currentPrimaryWeapon)
+        _currentlyHeldWeapon = _currentPrimaryWeapon;
+
+        _currentlyHeldWeapon.gameObject.SetActive(true);
+        _currentSecondaryWeapon.gameObject.SetActive(false);
+    
+
+        if (!_currentlyHeldWeapon.HasCrosshair)
         {
-            _currentSecondaryWeapon.gameObject.SetActive(false);
-        }
-        else
-        {
-            _currentPrimaryWeapon.gameObject.SetActive(false);
+            _playerController.crosshairImage.sprite = _emptyCrosshair;
         }
 
         cam = GetComponentInChildren<Camera>();
@@ -164,23 +180,49 @@ public class Player : MonoBehaviour
         _currentlyHeldWeapon = weapon;
         _currentlyHeldWeapon.gameObject.SetActive(true);
         _currentlyHeldWeapon.MyAnimator.SetTrigger("Ready");
+
+        if (_currentlyHeldWeapon.HasCrosshair)
+        {
+            _playerController.crosshairImage.sprite = _crosshair;
+        }
+        else
+        {
+            _playerController.crosshairImage.sprite = _emptyCrosshair;
+        }
     }
 
 
-    private void Update()
-    {
-        //Debug.Log(_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).length);
-        //Debug.Log(_revolverAnimator.GetCurrentAnimatorStateInfo(0).IsName(_revolverIdleClipName));
-        //Debug.Log(_revolverAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-    }
+    //Debug.Log(_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).length);
+    //Debug.Log(_revolverAnimator.GetCurrentAnimatorStateInfo(0).IsName(_revolverIdleClipName));
+    //Debug.Log(_revolverAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+
 
     public void UpdateAmmoUI()
     {
-        _primaryWeaponClipText.text = _currentPrimaryWeapon.CurrentClip.ToString();
-        _primaryWeaponReserveText.text = _currentPrimaryWeapon.CurrentReserve.ToString();
+        if (!_currentPrimaryWeapon.IsMelee)
+        {
+            _primaryWeaponClipText.text = _currentPrimaryWeapon.CurrentClip.ToString();
+            _primaryWeaponReserveText.text = _currentPrimaryWeapon.CurrentReserve.ToString();
+        }
+        else
+        {
+            _primaryWeaponClipText.text = string.Empty;
+            _primaryWeaponReserveText.text = string.Empty;
+        }
 
-        _secondaryWeaponClipText.text = _currentSecondaryWeapon.CurrentClip.ToString();
-        _secondaryWeaponReserveText.text = _currentSecondaryWeapon.CurrentReserve.ToString();
+        if (!_currentSecondaryWeapon.IsMelee)
+        {
+            _secondaryWeaponClipText.text = _currentSecondaryWeapon.CurrentClip.ToString();
+            _secondaryWeaponReserveText.text = _currentSecondaryWeapon.CurrentReserve.ToString();
+        }
+        else
+        {
+            _secondaryWeaponClipText.text = string.Empty;
+            _secondaryWeaponReserveText.text = string.Empty;
+        }
+
+
+       
     }
 
     public void Fire()
@@ -200,6 +242,9 @@ public class Player : MonoBehaviour
 
     public void Reload()
     {
+        if (_currentlyHeldWeapon.IsMelee)
+            return;
+
         if (_currentlyHeldWeapon.CurrentReserve <= 0)
             return;
 

@@ -91,7 +91,9 @@ public class FirstPersonAIO : MonoBehaviour {
     public bool enableCameraShake=false;
     internal Vector3 cameraStartingPosition;
     float baseCamFOV;
-    
+
+    //MyEdit
+    public Image crosshairImage = null;
 
     public bool autoCrosshair = false;
     public bool drawStaminaMeter = true;
@@ -287,6 +289,7 @@ public class FirstPersonAIO : MonoBehaviour {
                 crossHair.rectTransform.sizeDelta = new Vector2(25,25);
                 crossHair.transform.SetParent(canvas.transform);
                 crossHair.transform.position = Vector3.zero;
+                crosshairImage = crossHair;
             }
 
             if(drawStaminaMeter){

@@ -24,9 +24,11 @@ public class RangeWeapon : MonoBehaviour
     private int _reserveSize = 0;
     [SerializeField]
     private int _currentReserve = 0;
+    [SerializeField]
+    private bool _hasCrosshair = true;
+    [SerializeField]
+    private bool _isMelee = false;
 
-
-    
     [Header("References")]
     [SerializeField]
     private GameObject _projectilePrefab = null;
@@ -42,6 +44,18 @@ public class RangeWeapon : MonoBehaviour
     private Animator _myAnimator;
     [SerializeField]
     private string _idleAnimationName = string.Empty;
+    [SerializeField]
+    private GameObject _projectileObject = null;
+
+    public bool IsMelee
+    {
+        get => _isMelee;
+    }
+
+    public bool HasCrosshair
+    {
+        get => _hasCrosshair;
+    }
 
     public int CurrentClip
     {
@@ -94,6 +108,12 @@ public class RangeWeapon : MonoBehaviour
 
     public void Shoot()
     {
+        if (_isMelee)
+        {
+            //TODO turn on collider
+            return;
+        }
+
         _currentClip -= 1;
 
         if (_isHitscan)
@@ -118,8 +138,15 @@ public class RangeWeapon : MonoBehaviour
         else
         {
             SpawnProjectile();
+
+            //TODO fix constant arrow
+            if (_projectileObject != null)
+            {
+                _projectileObject.SetActive(false);
+            }
         }
 
+        
 
         Player.instance.UpdateAmmoUI();
     }   
@@ -142,7 +169,8 @@ public class RangeWeapon : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        GameObject tmpGO = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation);
+        Quaternion tmpQuat = Quaternion.Euler(0, -90, 90);
+        GameObject tmpGO = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpQuat);
         tmpGO.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
         Destroy(tmpGO, _destroyDelay);
     }
