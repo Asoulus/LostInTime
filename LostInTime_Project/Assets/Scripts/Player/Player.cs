@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private Sprite _crosshair = null;
     [SerializeField]
     private Sprite _emptyCrosshair = null;
+    [SerializeField]
+    private AudioSource _clickSound = null;
 
 
     #region GetComponented References
@@ -149,7 +151,37 @@ public class Player : MonoBehaviour
 
     private void SwapWeapons(int value)
     {
-        if (!_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.FireAnimationName))
+        if (_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.IdleSecondAnimationName))
+        {
+            if (Time.time > _nextSwap)
+            {
+                _nextSwap = Time.time + 1f;
+            }
+            else
+            {
+                return;
+            }
+
+            if (value == 1)
+            {
+                if (_currentlyHeldWeapon == _currentSecondaryWeapon)
+                {
+                    _currentlyHeldWeapon.MyAnimator.SetTrigger("Stow");
+                    StartCoroutine(SwapDelay(_currentPrimaryWeapon));
+                }
+            }
+            else
+            {
+                if (_currentlyHeldWeapon == _currentPrimaryWeapon)
+                {
+                    _currentlyHeldWeapon.MyAnimator.SetTrigger("Stow");
+                    StartCoroutine(SwapDelay(_currentSecondaryWeapon));
+                }
+            }
+            return;
+        }
+
+        if (!_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.IdleAnimationName))
             return;
 
         if (Time.time > _nextSwap)
@@ -234,9 +266,13 @@ public class Player : MonoBehaviour
     public void Fire()
     {
         if (_currentlyHeldWeapon.CurrentClip <= 0)
+        {
+            _clickSound.PlayDelayed(0.1f);
             return;
+        }
+            
 
-        if (_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.FireAnimationName) && Time.time > _nextFire)
+        if (_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.IdleAnimationName) && Time.time > _nextFire)
         {
             _nextFire = Time.time + _currentlyHeldWeapon.RateOfFire;
             _currentlyHeldWeapon.MyAnimator.SetTrigger("Fire");
@@ -257,7 +293,14 @@ public class Player : MonoBehaviour
         if (_currentlyHeldWeapon.CurrentClip == _currentlyHeldWeapon.ClipSize)
             return;
 
-        if (!_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.FireAnimationName))
+        if (_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.IdleSecondAnimationName))
+        {
+            _currentlyHeldWeapon.MyAnimator.SetTrigger("Reload");
+            _currentlyHeldWeapon.Reload();
+            return;
+        }
+
+        if (!_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName(_currentlyHeldWeapon.IdleAnimationName))
             return;
 
         _currentlyHeldWeapon.MyAnimator.SetTrigger("Reload");
@@ -278,7 +321,10 @@ public class Player : MonoBehaviour
 
     public void PickUpAmmo()
     {
-        //TODO implement
+        _currentPrimaryWeapon.ReplenishAmmo();
+        _currentSecondaryWeapon.ReplenishAmmo();
+
+        UpdateAmmoUI();
     }
 
     private void TakeDamage(float damage)

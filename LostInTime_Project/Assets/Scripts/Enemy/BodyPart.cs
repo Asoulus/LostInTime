@@ -11,11 +11,9 @@ public class BodyPart : MonoBehaviour
     [SerializeField]
     private bool _shouldRemove = false; 
 
-    private int _contactCounter = 0;
-
     [Header("References")]
     [SerializeField]
-    private Enemy enemy = null;
+    private Enemy _enemy = null;
     [SerializeField]
     private Enemy_Master _enemyMaster = null;
     [SerializeField]
@@ -39,7 +37,6 @@ public class BodyPart : MonoBehaviour
     {
         if (_shouldRemove)
         {                  
-
             _collider.enabled = false;
             _rb.isKinematic = true;
             _rb.useGravity = false;
@@ -50,7 +47,7 @@ public class BodyPart : MonoBehaviour
 
     private void SetInitialReferences()
     {
-        enemy = transform.root.GetComponent<Enemy>();
+        _enemy = transform.root.GetComponent<Enemy>();
         _enemyMaster = transform.root.GetComponent<Enemy_Master>();
         _rb = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
@@ -58,7 +55,7 @@ public class BodyPart : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!enemy.IsDead)
+        if (!_enemy.IsDead)
         {
             Projectile projectile = collision.transform.GetComponent<Projectile>();
 
@@ -67,8 +64,6 @@ public class BodyPart : MonoBehaviour
                 TakeDamage(projectile.damage);
                 Destroy(projectile.gameObject);
                 //TODO sound + effect
-                _contactCounter++;
-                Debug.Log(collision.contacts[0]);
             }
         }
         
@@ -77,6 +72,6 @@ public class BodyPart : MonoBehaviour
     public void TakeDamage(float damage)
     {
         damage *= _dmgMultiplier;
-        enemy.TakeDamage(damage);
+        _enemy.TakeDamage(damage);
     }
 }
