@@ -178,4 +178,41 @@ public class LockWeapons : MonoBehaviour
             }
         }
     }
+
+    public void UnlockWeapon(string weaponName)
+    {
+        switch (weaponName)
+        {
+            case "Shotgun":
+                {
+                    PlayerPrefs.SetInt(_shotgunUnlock, 1);
+                }
+                break;
+            case "Revolver":
+                {
+                    PlayerPrefs.SetInt(_revolverUnlock, 1);
+                }
+                break;
+            case "AK47":
+                {
+                    PlayerPrefs.SetInt(_ak47Unlock, 1);
+                }
+                break;
+            case "OrbGun":
+                {
+                    PlayerPrefs.SetInt(_orbGunUnlock, 1);
+                }
+                break;
+            case "Sword":
+                {
+                    PlayerPrefs.SetInt(_swordUnlock, 1);
+                }
+                break;
+            case "Crossbow":
+                {
+                    PlayerPrefs.SetInt(_crossbowUnlock, 1);
+                }
+                break;
+        }
+    }
 }

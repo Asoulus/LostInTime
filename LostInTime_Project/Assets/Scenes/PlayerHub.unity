@@ -3124,7 +3124,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: CURRENT_LOL
+          m_StringArgument: PlayerHub
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 120348254}
@@ -4239,6 +4239,7 @@ GameObject:
   - component: {fileID: 145971918}
   - component: {fileID: 145971917}
   - component: {fileID: 145971916}
+  - component: {fileID: 145971919}
   m_Layer: 5
   m_Name: Quest_4
   m_TagString: Untagged
@@ -4329,6 +4330,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145971914}
   m_CullTransparentMesh: 1
+--- !u!114 &145971919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145971914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d99295a55f97d4d8e533926397a700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questID: 3
+  _currentState: 0
+  _goal: 200
+  _inputPrefsName: Quest_4
+  _checkMark: {fileID: 1971578587}
+  _progressText: {fileID: 588718780}
 --- !u!1 &148961688
 GameObject:
   m_ObjectHideFlags: 0
@@ -4739,7 +4758,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kill 50 enemies with 360 no scopes and then do a dab.
+  m_Text: Kill 25 enemies with any weapon
 --- !u!222 &154984231
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8605,7 +8624,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Quest Name, Reward: AK-47'
+  m_Text: 'Two Birds One Stone, Reward: Space Shotgun'
 --- !u!222 &328107038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9647,6 +9666,7 @@ GameObject:
   - component: {fileID: 376206023}
   - component: {fileID: 376206025}
   - component: {fileID: 376206026}
+  - component: {fileID: 376206027}
   m_Layer: 0
   m_Name: '###EVENTS###'
   m_TagString: Untagged
@@ -9758,6 +9778,19 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8e895ef8b650d864b8875310812d6b65, type: 2}
   - {fileID: 2100000, guid: 8e895ef8b650d864b8875310812d6b65, type: 2}
   - {fileID: 2100000, guid: 8e895ef8b650d864b8875310812d6b65, type: 2}
+  _isSpecial: 0
+--- !u!114 &376206027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376206019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f222bd3d2b8eab4ebd923cea5357c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &377203345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 17d21ebd90d724046a76bec7f5089afb,
@@ -10414,7 +10447,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50/50
+  m_Text: 0/100
 --- !u!222 &397103337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12753,7 +12786,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Quest Name, Reward: AK-47'
+  m_Text: 'Out Of This Orbit, Reward: OrbGun'
 --- !u!222 &476078594
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15696,7 +15729,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50/50
+  m_Text: 0/200
 --- !u!222 &588718781
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15822,11 +15855,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: AK47
   _isExitDoor: 0
+  _isLevelExitDoor: 0
+  _isDoorOpener: 0
   _display: {fileID: 1717322014}
   _primaryText: {fileID: 1906639504}
   _secondaryText: {fileID: 372833379}
   _levelLoader: {fileID: 0}
   _weaponLocker: {fileID: 376206026}
+  _Door: {fileID: 0}
 --- !u!1 &596198456
 GameObject:
   m_ObjectHideFlags: 0
@@ -21783,7 +21819,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Quest Name, Reward: AK-47'
+  m_Text: 'Ready To Rumble, Reward: AK-47'
 --- !u!222 &871521706
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22700,7 +22736,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kill 50 enemies with 360 no scopes and then do a dab.
+  m_Text: Kill 200 enemies with any weapon
 --- !u!222 &904087038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24317,7 +24353,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kill 50 enemies with 360 no scopes and then do a dab.
+  m_Text: Kill 50 enemies with any weapon
 --- !u!222 &975624253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25871,7 +25907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kill 50 enemies with 360 no scopes and then do a dab.
+  m_Text: Kill 100 enemies with any weapon
 --- !u!222 &1039847333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25898,7 +25934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1040176955
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25919,10 +25955,10 @@ RectTransform:
   m_Father: {fileID: 1772833278}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1230, y: -685}
+  m_SizeDelta: {x: 750, y: 150}
   m_Pivot: {x: 0.49999997, y: 0.49999997}
 --- !u!114 &1040176956
 MonoBehaviour:
@@ -26641,11 +26677,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: Shotgun
   _isExitDoor: 0
+  _isLevelExitDoor: 0
+  _isDoorOpener: 0
   _display: {fileID: 842890406}
   _primaryText: {fileID: 1906639504}
   _secondaryText: {fileID: 372833379}
   _levelLoader: {fileID: 0}
   _weaponLocker: {fileID: 376206026}
+  _Door: {fileID: 0}
 --- !u!4 &1047252574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9218377935294762359, guid: 1e711044cbc639d44aa004669771969e,
@@ -28802,7 +28841,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Quest Name, Reward: AK-47'
+  m_Text: 'Rough Beginnings, Reward: Revolver'
 --- !u!222 &1125445596
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29877,7 +29916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1159231848
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30572,7 +30611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1187616062
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31373,7 +31412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1220366955
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31793,6 +31832,7 @@ GameObject:
   - component: {fileID: 1236869837}
   - component: {fileID: 1236869836}
   - component: {fileID: 1236869835}
+  - component: {fileID: 1236869838}
   m_Layer: 5
   m_Name: Quest_2
   m_TagString: Untagged
@@ -31883,6 +31923,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236869833}
   m_CullTransparentMesh: 1
+--- !u!114 &1236869838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236869833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d99295a55f97d4d8e533926397a700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questID: 1
+  _currentState: 0
+  _goal: 50
+  _inputPrefsName: Quest_2
+  _checkMark: {fileID: 1220366954}
+  _progressText: {fileID: 2042876749}
 --- !u!1 &1244687744
 GameObject:
   m_ObjectHideFlags: 0
@@ -33915,6 +33973,7 @@ GameObject:
   - component: {fileID: 1330206240}
   - component: {fileID: 1330206239}
   - component: {fileID: 1330206238}
+  - component: {fileID: 1330206241}
   m_Layer: 5
   m_Name: Quest_3
   m_TagString: Untagged
@@ -34005,6 +34064,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330206236}
   m_CullTransparentMesh: 1
+--- !u!114 &1330206241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330206236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d99295a55f97d4d8e533926397a700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questID: 2
+  _currentState: 0
+  _goal: 100
+  _inputPrefsName: Quest_3
+  _checkMark: {fileID: 1159231847}
+  _progressText: {fileID: 397103336}
 --- !u!1 &1334297651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a621f0b1ecc072244ae8dc97891661e8,
@@ -35344,11 +35421,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: Revolver
   _isExitDoor: 0
+  _isLevelExitDoor: 0
+  _isDoorOpener: 0
   _display: {fileID: 332060509}
   _primaryText: {fileID: 1906639504}
   _secondaryText: {fileID: 372833379}
   _levelLoader: {fileID: 0}
   _weaponLocker: {fileID: 376206026}
+  _Door: {fileID: 0}
 --- !u!4 &1385058131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 560617be663c9224287ab47c522930c3,
@@ -35894,11 +35974,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: Crossbow
   _isExitDoor: 0
+  _isLevelExitDoor: 0
+  _isDoorOpener: 0
   _display: {fileID: 1772728573}
   _primaryText: {fileID: 1906639504}
   _secondaryText: {fileID: 372833379}
   _levelLoader: {fileID: 0}
   _weaponLocker: {fileID: 376206026}
+  _Door: {fileID: 0}
 --- !u!1001 &1399841927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39037,7 +39120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1540432861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39058,10 +39141,10 @@ RectTransform:
   m_Father: {fileID: 1772833278}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 429.99997, y: -685}
+  m_SizeDelta: {x: 750, y: 150}
   m_Pivot: {x: 0.49999997, y: 0.49999997}
 --- !u!114 &1540432862
 MonoBehaviour:
@@ -39169,11 +39252,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: ExitDoor
   _isExitDoor: 1
+  _isLevelExitDoor: 0
+  _isDoorOpener: 0
   _display: {fileID: 1354002158}
   _primaryText: {fileID: 0}
   _secondaryText: {fileID: 0}
   _levelLoader: {fileID: 352840539}
   _weaponLocker: {fileID: 0}
+  _Door: {fileID: 0}
 --- !u!65 &1540903053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39865,6 +39951,7 @@ GameObject:
   - component: {fileID: 1558197751}
   - component: {fileID: 1558197750}
   - component: {fileID: 1558197749}
+  - component: {fileID: 1558197752}
   m_Layer: 5
   m_Name: Quest_1
   m_TagString: Untagged
@@ -39955,6 +40042,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558197747}
   m_CullTransparentMesh: 1
+--- !u!114 &1558197752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558197747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d99295a55f97d4d8e533926397a700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questID: 0
+  _currentState: 0
+  _goal: 25
+  _inputPrefsName: Quest_1
+  _checkMark: {fileID: 1187616061}
+  _progressText: {fileID: 1652796343}
 --- !u!4 &1560653406 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a1221f4b59a76204697199a3abc8d901,
@@ -41989,7 +42094,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50/50
+  m_Text: 0/25
 --- !u!222 &1652796344
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47313,11 +47418,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: Sword
   _isExitDoor: 0
+  _isLevelExitDoor: 0
+  _isDoorOpener: 0
   _display: {fileID: 1158494834}
   _primaryText: {fileID: 1906639504}
   _secondaryText: {fileID: 372833379}
   _levelLoader: {fileID: 0}
   _weaponLocker: {fileID: 376206026}
+  _Door: {fileID: 0}
 --- !u!1 &1859871431
 GameObject:
   m_ObjectHideFlags: 0
@@ -49938,11 +50046,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: OrbGun
   _isExitDoor: 0
+  _isLevelExitDoor: 0
+  _isDoorOpener: 0
   _display: {fileID: 865994527}
   _primaryText: {fileID: 1906639504}
   _secondaryText: {fileID: 372833379}
   _levelLoader: {fileID: 0}
   _weaponLocker: {fileID: 376206026}
+  _Door: {fileID: 0}
 --- !u!4 &1967852591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f32b000e4ef3aa247b8ff4d19a88aca7,
@@ -49966,7 +50077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1971578588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51634,7 +51745,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50/50
+  m_Text: 0/50
 --- !u!222 &2042876750
 CanvasRenderer:
   m_ObjectHideFlags: 0

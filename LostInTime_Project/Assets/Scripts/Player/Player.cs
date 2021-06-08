@@ -268,7 +268,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     public void AssignWeapons(string name1, string name2)
     {
         switch (name1)

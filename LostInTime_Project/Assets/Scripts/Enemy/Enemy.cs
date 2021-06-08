@@ -75,6 +75,8 @@ public class Enemy : MonoBehaviour
 
         _enemyUIRoot.SetActive(false); //wylaczanie nazwy i zdrowia przeciwnika
 
+        QuestHandler.instance.EnemyDeathEvent();
+
         Destroy(gameObject, _despawnTime);
     }
 
