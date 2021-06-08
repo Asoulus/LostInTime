@@ -613,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _checkRate: 0
   _nextForPlayerCheck: 0
-  _detectionRadius: 30
+  _detectionRadius: 15
   _playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -692,9 +692,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2349f709238c9f478372222b861255a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 1000
-  _currentHealth: 1000
-  _despawnTime: 5
+  _maxHealth: 6000
+  _currentHealth: 6000
+  _despawnTime: 2
   _isDead: 0
   _myName: Alan The Alien
   _agent: {fileID: 0}
