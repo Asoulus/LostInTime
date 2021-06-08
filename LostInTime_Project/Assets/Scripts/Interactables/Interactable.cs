@@ -12,6 +12,8 @@ public class Interactable : MonoBehaviour
     private string _objectName = null;
     [SerializeField]
     private bool _isExitDoor = false;
+    [SerializeField]
+    private bool _isLevelExitDoor = false;
 
     [Header("References")]
     [SerializeField]
@@ -42,6 +44,7 @@ public class Interactable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ToggleVisibility(true);
+            
         }
 
         PlayerInputHandler.instance.onOneButtonPressed += PerformAction;
@@ -51,12 +54,13 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!_weaponLocker.ReturnLocked(_objectName) && _objectName!=null)
+        if (!_weaponLocker.ReturnLocked(_objectName) && _objectName != null && _weaponLocker != null) 
             return;
 
         if (other.CompareTag("Player"))
         {
             ToggleVisibility(false);
+            
         }
 
         PlayerInputHandler.instance.onOneButtonPressed -= PerformAction;
@@ -66,8 +70,16 @@ public class Interactable : MonoBehaviour
 
     private void ExitDoor()
     {
-        if (!_isExitDoor)
+        Debug.Log("action");
+
+        if (_isLevelExitDoor)
+        {
+            _levelLoader.LoadLevel("PlayerHub");
             return;
+        }
+
+        if (!_isExitDoor)
+            return;   
 
         if (PlayerChoices.weapons[0] == null || PlayerChoices.weapons[1] == null)
         {
@@ -82,8 +94,7 @@ public class Interactable : MonoBehaviour
         tmp.Add("Future");
 
 
-        //_levelLoader.LoadLevel(tmp[Random.Range(0, 3)]);
-        _levelLoader.LoadLevel("Past");
+        _levelLoader.LoadLevel(tmp[Random.Range(0, 3)]);
     }
 
     private void ToggleVisibility(bool value)
@@ -106,10 +117,22 @@ public class Interactable : MonoBehaviour
         
     }
 
-    
-
     private void PerformAction(int value)
     {
+        Debug.Log("action");
+        if (_isLevelExitDoor)
+        {
+            if (value == 1) 
+            {
+                _levelLoader.LoadLevel("Menu");
+            }
+            else
+            {
+                Application.Quit();
+            }
+            return;
+        }
+
         if (_isExitDoor)
             return;
 
@@ -117,7 +140,7 @@ public class Interactable : MonoBehaviour
         {
             if (PlayerChoices.weapons[1] == _objectName)
             {
-                return; //TODO info czemu nie mozna
+                return; 
             }
 
             PlayerChoices.weapons[0] = _objectName;

@@ -43,6 +43,9 @@ public class LockWeapons : MonoBehaviour
 
     #endregion
 
+    [SerializeField]
+    private bool _isSpecial = false;
+
     private void Awake()
     {
         instance = this;
@@ -51,10 +54,6 @@ public class LockWeapons : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt(_revolverUnlock, 0);
-        PlayerPrefs.SetInt(_crossbowUnlock, 1);
-        PlayerPrefs.SetInt(_swordUnlock, 1);
-
         _isShotgunUnlocked = (PlayerPrefs.GetInt(_shotgunUnlock) == 1);
         _isRevolverUnlocked = (PlayerPrefs.GetInt(_revolverUnlock) == 1);
         _isSwordUnlocked = (PlayerPrefs.GetInt(_swordUnlock) == 1);
@@ -106,6 +105,9 @@ public class LockWeapons : MonoBehaviour
 
     private void BlackOutMesh()
     {
+        if (_isSpecial)
+            return;
+
         //shotgun
         if (!_isShotgunUnlocked)
         {
