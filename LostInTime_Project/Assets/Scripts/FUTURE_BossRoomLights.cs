@@ -31,8 +31,6 @@ public class FUTURE_BossRoomLights : MonoBehaviour
         _drzwi.SetActive(true);
 
         _boss.SetActive(true);
-
-        //Instantiate(_boss,_location.transform.position, _location.transform.rotation);
     }
 
 }
