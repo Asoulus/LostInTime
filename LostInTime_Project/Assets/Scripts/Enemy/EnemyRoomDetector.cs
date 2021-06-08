@@ -4,27 +4,41 @@ using UnityEngine;
 
 public class EnemyRoomDetector : MonoBehaviour
 {
-    private int _enemyCount = 0;
+    [SerializeField]
+    private List<Enemy> _roomEnemies = new List<Enemy>();
+    [SerializeField]
+    private EnemyRoomDetector _nextRoom;
+    [SerializeField]
+    private GameObject _roomDoor = null;
 
-    private GameObject _completionDoor;
-
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.CompareTag("Enemy"))
+        StartCoroutine(CheckDeath());
+    }
+
+    private IEnumerator CheckDeath()
+    {
+        yield return new WaitForSeconds(5f);
+
+        bool test = true;
+
+        foreach (var enemy in _roomEnemies)
         {
-            _enemyCount++;
-            Debug.Log(_enemyCount);
+            if (!enemy.IsDead)
+            {
+                test = false;
+                break;
+            }
+        }
+
+        if (test)
+        {
+            NextRoom();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void NextRoom()
     {
-        if (other.CompareTag("Enemy"))
-        {
-            _enemyCount--;
-            Debug.Log(_enemyCount);
-        }
+        _roomDoor.SetActive(false);
     }
-
-
 }
