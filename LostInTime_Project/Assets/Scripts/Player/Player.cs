@@ -84,7 +84,17 @@ public class Player : MonoBehaviour
     #region Weapon Prefabs
     [Header("Weapon Prefabs")]
     [SerializeField]
-    private GameObject _revolver;
+    private RangeWeapon _revolver;
+    [SerializeField]
+    private RangeWeapon _crossbow;
+    [SerializeField]
+    private RangeWeapon _ak47;
+    [SerializeField]
+    private RangeWeapon _sword;
+    [SerializeField]
+    private RangeWeapon _shotgun;
+    [SerializeField]
+    private RangeWeapon _orbGun;
 
     #endregion
 
@@ -230,10 +240,76 @@ public class Player : MonoBehaviour
     }
 
 
-    //Debug.Log(_currentlyHeldWeapon.MyAnimator.GetCurrentAnimatorStateInfo(0).length);
-    //Debug.Log(_revolverAnimator.GetCurrentAnimatorStateInfo(0).IsName(_revolverIdleClipName));
-    //Debug.Log(_revolverAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+    public void AssignWeapons(string name1, string name2)
+    {
+        switch (name1)
+        {
+            case "Shotgun":
+                {
+                    _currentPrimaryWeapon = _shotgun; 
+                }
+                break;
+            case "Crossbow":
+                {
+                    _currentPrimaryWeapon = _crossbow;
+                }
+                break;
+            case "Sword":
+                {
+                    _currentPrimaryWeapon = _sword;
+                }
+                break;
+            case "AK47":
+                {
+                    _currentPrimaryWeapon = _ak47;
+                }
+                break;
+            case "OrbGun":
+                {
+                    _currentPrimaryWeapon = _orbGun;
+                }
+                break;
+            case "Revolver":
+                {
+                    _currentPrimaryWeapon = _revolver;
+                }
+                break;
+        }
 
+        switch (name2)
+        {
+            case "Shotgun":
+                {
+                    _currentSecondaryWeapon = _shotgun;
+                }
+                break;
+            case "Crossbow":
+                {
+                    _currentSecondaryWeapon = _crossbow;
+                }
+                break;
+            case "Sword":
+                {
+                    _currentSecondaryWeapon = _sword;
+                }
+                break;
+            case "AK47":
+                {
+                    _currentSecondaryWeapon = _ak47;
+                }
+                break;
+            case "OrbGun":
+                {
+                    _currentSecondaryWeapon = _orbGun;
+                }
+                break;
+            case "Revolver":
+                {
+                    _currentSecondaryWeapon = _revolver;
+                }
+                break;
+        }
+    }
 
     public void UpdateAmmoUI()
     {

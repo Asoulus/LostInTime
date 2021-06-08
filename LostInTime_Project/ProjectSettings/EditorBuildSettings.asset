@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerHub.unity
     guid: 6a9d91ed04d1b4343a735153ee14d899
+  - enabled: 1
+    path: Assets/Scenes/Past.unity
+    guid: 852d6c966b1eb184c9b436361adb8cd0
+  - enabled: 1
+    path: Assets/Scenes/Present.unity
+    guid: 920e40f8b68f3da49b124f50e84c6067
+  - enabled: 1
+    path: Assets/Scenes/Future.unity
+    guid: b05c961f7e9ecd2458ae68fd424f3e4b
   m_configObjects: {}

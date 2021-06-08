@@ -1,13 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 [RequireComponent(typeof(Collider))]
 public class Interactable : MonoBehaviour
 {
+    [Header("Variables")]
+    [SerializeField]
+    private string _objectName = null;
+    [SerializeField]
+    private bool _isExitDoor = false;
+
     [Header("References")]
     [SerializeField]
     private CanvasGroup _display = null;
+    [SerializeField]
+    private Text _primaryText = null;
+    [SerializeField]
+    private Text _secondaryText = null;
+    [SerializeField]
+    private LevelLoader _levelLoader = null;
+    [SerializeField]
+    private LockWeapons _weaponLocker = null;
 
     private void Start()
     {
@@ -16,22 +31,51 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_weaponLocker!=null)
+        {
+            if (!_weaponLocker.ReturnLocked(_objectName))
+                return;
+        }
+        
+
         if (other.CompareTag("Player"))
         {
             ToggleVisibility(true);
         }
 
-        PlayerInputHandler.instance.onInteractionButtonPressed += PerformAction;
+        PlayerInputHandler.instance.onOneButtonPressed += PerformAction;
+        PlayerInputHandler.instance.onTwoButtonPressed += PerformAction;
+        PlayerInputHandler.instance.onInteractionButtonPressed += ExitDoor;
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (!_weaponLocker.ReturnLocked(_objectName))
+            return;
+
         if (other.CompareTag("Player"))
         {
             ToggleVisibility(false);
         }
 
-        PlayerInputHandler.instance.onInteractionButtonPressed -= PerformAction;
+        PlayerInputHandler.instance.onOneButtonPressed -= PerformAction;
+        PlayerInputHandler.instance.onTwoButtonPressed -= PerformAction;
+        PlayerInputHandler.instance.onInteractionButtonPressed -= ExitDoor;
+    }
+
+    private void ExitDoor()
+    {
+        if (!_isExitDoor)
+            return;
+
+        List<string> tmp = new List<string>();
+
+        tmp.Add("Past");
+        tmp.Add("Present");
+        tmp.Add("Future");
+
+
+        _levelLoader.LoadLevel(tmp[Random.Range(0, 3)]);
     }
 
     private void ToggleVisibility(bool value)
@@ -52,8 +96,31 @@ public class Interactable : MonoBehaviour
         _display.interactable = value;
     }
 
-    private void PerformAction()
+    private void PerformAction(int value)
     {
-        //TODO: Implement
+        if (_isExitDoor)
+            return;
+
+        if (value == 1) 
+        {
+            if (PlayerChoices.weapons[1] == _objectName)
+            {
+                return; //TODO info czemu nie mozna
+            }
+
+            PlayerChoices.weapons[0] = _objectName;
+            _primaryText.text = "Primary Weapon: " + _objectName;
+        }
+        else
+        {
+            if (PlayerChoices.weapons[0] == _objectName)
+            {
+                return;
+            }
+
+            PlayerChoices.weapons[1] = _objectName;
+            _secondaryText.text = "Secondary Weapon: " + _objectName;
+        }
+        
     }
 }
