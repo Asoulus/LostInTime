@@ -20,6 +20,6 @@ public class Bilboard : MonoBehaviour
 
     private void SetInitialReferences()//TODO lepiej przekazaæ kamere
     {
-        //_cam = Player.instance.cam.GetComponent<Transform>();
+        _cam = Player.instance.cam.GetComponent<Transform>();
     }
 }

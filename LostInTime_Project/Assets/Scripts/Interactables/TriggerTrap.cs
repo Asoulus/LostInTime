@@ -19,7 +19,6 @@ public class TriggerTrap : MonoBehaviour
                 //TODO: Implement
                 _canTrigger = false;
                 StartCoroutine(Delay());
-                Debug.Log("BRUH!");
             }
         }   
     }

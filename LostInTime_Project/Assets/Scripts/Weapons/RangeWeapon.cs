@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class RangeWeapon : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class RangeWeapon : MonoBehaviour
     private bool _hasCrosshair = true;
     [SerializeField]
     private bool _isMelee = false;
+    [SerializeField]
+    private bool _isShotgun = false;
+    [SerializeField]
+    private bool _isCrossbow = false;
 
     [Header("References")]
     [SerializeField]
@@ -45,7 +50,7 @@ public class RangeWeapon : MonoBehaviour
     [SerializeField]
     private string _idleAnimationName = string.Empty;
     [SerializeField]
-    private GameObject _projectileObject = null;
+    private string _idleSecondAnimationName = string.Empty;
 
     public bool IsMelee
     {
@@ -82,9 +87,14 @@ public class RangeWeapon : MonoBehaviour
         get => _myAnimator;
     }
 
-    public string FireAnimationName
+    public string IdleAnimationName
     {
         get => _idleAnimationName;
+    }
+
+    public string IdleSecondAnimationName
+    {
+        get => _idleSecondAnimationName;
     }
 
     public Sprite WeaponUIImage
@@ -100,7 +110,13 @@ public class RangeWeapon : MonoBehaviour
     private void SetInitialReferences()
     {
         _myAnimator = GetComponent<Animator>();
-        _projectilePrefab.GetComponent<Projectile>().damage = _damage;
+
+        Projectile tmp = _projectilePrefab.GetComponent<Projectile>();
+        if (tmp!=null)
+        {
+            tmp.damage = _damage;
+        }
+        
         _playerCamera = Player.instance.cam;
 
         //_idleAnimationName = _myAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name; -> daje animacje wyjmowania a nie idle
@@ -108,19 +124,13 @@ public class RangeWeapon : MonoBehaviour
 
     public void Shoot()
     {
-        if (_isMelee)
-        {
-            //TODO turn on collider
-            return;
-        }
-
         _currentClip -= 1;
 
         if (_isHitscan)
         {
             RaycastHit hit;
 
-            Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _range);
+            Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _range);           
 
             if (hit.collider != null)
             {
@@ -138,15 +148,7 @@ public class RangeWeapon : MonoBehaviour
         else
         {
             SpawnProjectile();
-
-            //TODO fix constant arrow
-            if (_projectileObject != null)
-            {
-                _projectileObject.SetActive(false);
-            }
         }
-
-        
 
         Player.instance.UpdateAmmoUI();
     }   
@@ -167,8 +169,48 @@ public class RangeWeapon : MonoBehaviour
         Player.instance.UpdateAmmoUI();
     }
 
+    public void ReplenishAmmo()
+    {
+        if (CurrentReserve >= _reserveSize)
+            return;
+
+        _currentReserve += 2 * ClipSize;
+        _currentReserve = Mathf.Clamp(_currentReserve, 0, _reserveSize);
+    }
+
     private void SpawnProjectile()
     {
+        if (_isShotgun)
+        {
+            Quaternion tmpClusterQuat = Quaternion.Euler(-90, -90, 0);
+            GameObject tmpClusterGO = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpClusterQuat);
+            //tmpGO.transform.parent = this.gameObject.transform;
+            tmpClusterGO.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
+            Destroy(tmpClusterGO, _destroyDelay);
+
+            return;
+        }
+
+        if (_isMelee)
+        {
+            Quaternion tmpQuats = Quaternion.Euler(0, 0, 0);
+            GameObject tmpGOs = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpQuats);
+            tmpGOs.transform.parent = this.gameObject.transform;
+            tmpGOs.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
+            Destroy(tmpGOs, _destroyDelay);
+            return;
+        }
+
+        if (_isCrossbow)
+        {
+            Quaternion tmpQuatC = Quaternion.Euler(0, -90, 90);
+            GameObject tmpGOC = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpQuatC);
+            tmpGOC.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
+            tmpGOC.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.right * -5, ForceMode.Impulse);
+            Destroy(tmpGOC, _destroyDelay);
+            return;
+        }
+
         Quaternion tmpQuat = Quaternion.Euler(0, -90, 90);
         GameObject tmpGO = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpQuat);
         tmpGO.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
