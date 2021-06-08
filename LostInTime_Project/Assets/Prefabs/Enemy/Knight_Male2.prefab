@@ -1070,7 +1070,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 329
   _wanderRange: 20
-  _attackDamage: 15
+  _attackDamage: 45
   _attackRate: 1
   _attackRange: 3.5
   _nextAttack: 0
