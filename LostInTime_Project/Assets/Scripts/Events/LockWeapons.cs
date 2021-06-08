@@ -99,6 +99,10 @@ public class LockWeapons : MonoBehaviour
                 }
                 break;
 
+            default:
+                tmp = true;
+                break;
+
         }
         return tmp;
     }

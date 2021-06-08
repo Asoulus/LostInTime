@@ -14,6 +14,8 @@ public class Interactable : MonoBehaviour
     private bool _isExitDoor = false;
     [SerializeField]
     private bool _isLevelExitDoor = false;
+    [SerializeField]
+    private bool _isDoorOpener = false;
 
     [Header("References")]
     [SerializeField]
@@ -26,6 +28,8 @@ public class Interactable : MonoBehaviour
     private LevelLoader _levelLoader = null;
     [SerializeField]
     private LockWeapons _weaponLocker = null;
+    [SerializeField]
+    private GameObject _Door = null;
 
     private void Start()
     {
@@ -34,7 +38,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_weaponLocker!=null)
+        if (_weaponLocker!=null && !_isDoorOpener)
         {
             if (!_weaponLocker.ReturnLocked(_objectName))
                 return;
@@ -70,7 +74,12 @@ public class Interactable : MonoBehaviour
 
     private void ExitDoor()
     {
-        Debug.Log("action");
+        if (_isDoorOpener)
+        {
+            Debug.Log("sd");
+            _Door.SetActive(false);
+            return;
+        }
 
         if (_isLevelExitDoor)
         {
@@ -119,7 +128,10 @@ public class Interactable : MonoBehaviour
 
     private void PerformAction(int value)
     {
-        Debug.Log("action");
+        if (_isDoorOpener)
+            return;
+
+
         if (_isLevelExitDoor)
         {
             if (value == 1) 
