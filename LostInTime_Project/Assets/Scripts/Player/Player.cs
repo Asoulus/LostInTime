@@ -143,16 +143,14 @@ public class Player : MonoBehaviour
         _currentlyHeldWeapon = _currentPrimaryWeapon;
 
         _currentlyHeldWeapon.gameObject.SetActive(true);
-        _currentSecondaryWeapon.gameObject.SetActive(false);
-    
-
-        
+        _currentSecondaryWeapon.gameObject.SetActive(false);    
 
         cam = GetComponentInChildren<Camera>();
         _playerMaster = GetComponent<Player_Master>();
-        ToggleTooltip(false, "");
-        Debug.Log(PlayerChoices.weapons[0]);
-        Debug.Log(PlayerChoices.weapons[1]);
+        if (_tooltip != null)
+        {
+            ToggleTooltip(false, "");
+        }
     }
 
     private IEnumerator CrosshairCheck()

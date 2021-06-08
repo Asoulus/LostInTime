@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1893485943829019114}
   m_Layer: 9
   m_Name: Alien
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -977,7 +977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dmgMultiplier: 1
   _shouldRemove: 1
-  enemy: {fileID: 0}
+  _enemy: {fileID: 0}
   _enemyMaster: {fileID: 0}
   _rb: {fileID: 0}
   _collider: {fileID: 0}
@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dmgMultiplier: 2
   _shouldRemove: 1
-  enemy: {fileID: 0}
+  _enemy: {fileID: 0}
   _enemyMaster: {fileID: 0}
   _rb: {fileID: 0}
   _collider: {fileID: 0}
