@@ -8,9 +8,14 @@ public class LevelController : MonoBehaviour
     private List<EnemyRoomDetector> _rooms = new List<EnemyRoomDetector>();
     [SerializeField]
     private int _startingRoomId;
+    [SerializeField]
+    private bool _lvlIsFuture = false;
 
     public void AssignStartingRoom(int id)
     {
+        if (_lvlIsFuture)
+            return;
+
         _startingRoomId = id;
 
         foreach (var room in _rooms)
