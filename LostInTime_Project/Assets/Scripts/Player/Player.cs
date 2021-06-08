@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     private Sprite _emptyCrosshair = null;
     [SerializeField]
     private AudioSource _clickSound = null;
+    [SerializeField]
+    private CanvasGroup _tooltip = null;
 
 
     #region GetComponented References
@@ -148,6 +150,9 @@ public class Player : MonoBehaviour
 
         cam = GetComponentInChildren<Camera>();
         _playerMaster = GetComponent<Player_Master>();
+        ToggleTooltip(false, "");
+        Debug.Log(PlayerChoices.weapons[0]);
+        Debug.Log(PlayerChoices.weapons[1]);
     }
 
     private IEnumerator CrosshairCheck()
@@ -157,6 +162,32 @@ public class Player : MonoBehaviour
         {
             _playerController.crosshairImage.sprite = _emptyCrosshair;
         }
+    }
+
+    private IEnumerator HideTooltip()
+    {
+        yield return new WaitForSeconds(5f);
+        ToggleTooltip(false,"");
+    }
+
+    public void ToggleTooltip(bool value,string text)
+    {
+        _tooltip.GetComponentInChildren<Text>().text = text;
+
+        if (value)
+        {
+            _tooltip.alpha = 1;
+
+        }
+        else
+        {
+            _tooltip.alpha = 0;
+        }
+
+        _tooltip.interactable = value;
+        _tooltip.blocksRaycasts = value;
+
+        StartCoroutine(HideTooltip());
     }
 
     private void SwapWeapons(int value)

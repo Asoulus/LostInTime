@@ -14,6 +14,7 @@ public class RandomSpawn : MonoBehaviour
         int index = Random.Range(0, _spawns.Count);
 
         Player.instance.gameObject.transform.position   = _spawns[index].transform.position;
+        Player.instance.gameObject.transform.rotation = _spawns[index].transform.rotation;
     }
 
 

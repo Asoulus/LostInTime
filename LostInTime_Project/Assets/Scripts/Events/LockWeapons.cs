@@ -51,8 +51,9 @@ public class LockWeapons : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt(_revolverUnlock, 1);
+        PlayerPrefs.SetInt(_revolverUnlock, 0);
         PlayerPrefs.SetInt(_crossbowUnlock, 1);
+        PlayerPrefs.SetInt(_swordUnlock, 1);
 
         _isShotgunUnlocked = (PlayerPrefs.GetInt(_shotgunUnlock) == 1);
         _isRevolverUnlocked = (PlayerPrefs.GetInt(_revolverUnlock) == 1);

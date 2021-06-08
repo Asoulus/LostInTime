@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,7 +51,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!_weaponLocker.ReturnLocked(_objectName))
+        if (!_weaponLocker.ReturnLocked(_objectName) && _objectName!=null)
             return;
 
         if (other.CompareTag("Player"))
@@ -68,6 +69,12 @@ public class Interactable : MonoBehaviour
         if (!_isExitDoor)
             return;
 
+        if (PlayerChoices.weapons[0] == null || PlayerChoices.weapons[1] == null)
+        {
+            Player.instance.ToggleTooltip(true, "Must select two weapons before going into a level!!!");
+            return;
+        }
+
         List<string> tmp = new List<string>();
 
         tmp.Add("Past");
@@ -75,7 +82,8 @@ public class Interactable : MonoBehaviour
         tmp.Add("Future");
 
 
-        _levelLoader.LoadLevel(tmp[Random.Range(0, 3)]);
+        //_levelLoader.LoadLevel(tmp[Random.Range(0, 3)]);
+        _levelLoader.LoadLevel("Past");
     }
 
     private void ToggleVisibility(bool value)
@@ -94,7 +102,11 @@ public class Interactable : MonoBehaviour
 
         _display.blocksRaycasts = value;
         _display.interactable = value;
+
+        
     }
+
+    
 
     private void PerformAction(int value)
     {
