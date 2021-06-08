@@ -1881,7 +1881,7 @@ Transform:
   m_GameObject: {fileID: 5723706229178153307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.995263, y: 0.00999999, z: -29.21085}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.3, z: 1.5}
   m_Children:
   - {fileID: 12235342366063944}
   - {fileID: 844485768728682372}
@@ -1931,9 +1931,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 329
   _wanderRange: 20
-  _attackDamage: 15
-  _attackRate: 1
-  _attackRange: 3.5
+  _attackDamage: 30
+  _attackRate: 1.5
+  _attackRange: 4.5
   _nextAttack: 0
   _enemyMaster: {fileID: 0}
   _myHead: {fileID: 0}

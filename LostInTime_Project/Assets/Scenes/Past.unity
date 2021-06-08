@@ -10633,6 +10633,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &281622944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 281622943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &281958871
 GameObject:
   m_ObjectHideFlags: 0
@@ -13533,6 +13539,7 @@ MonoBehaviour:
   - {fileID: 1469611413}
   - {fileID: 960058686}
   _startingRoomId: 0
+  _lvlIsFuture: 0
 --- !u!114 &376206029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13997,6 +14004,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &388896675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 388896674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &388915778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16763,11 +16776,13 @@ MonoBehaviour:
   _objectName: ExitDoor
   _isExitDoor: 0
   _isLevelExitDoor: 1
+  _isDoorOpener: 0
   _display: {fileID: 1766941710}
   _primaryText: {fileID: 0}
   _secondaryText: {fileID: 0}
   _levelLoader: {fileID: 352840539}
   _weaponLocker: {fileID: 0}
+  _Door: {fileID: 0}
 --- !u!65 &444615200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22139,6 +22154,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &569851779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 569851778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &570871268
 GameObject:
   m_ObjectHideFlags: 0
@@ -23683,13 +23704,13 @@ MonoBehaviour:
   _isStartingRoom: 0
   _isFinishingRoom: 0
   _roomEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1171345387}
+  - {fileID: 1225519062}
+  - {fileID: 894733150}
+  - {fileID: 1404815654}
+  - {fileID: 1748328951}
+  - {fileID: 1867419433}
+  - {fileID: 1856040731}
   _nextRoomDoor: {fileID: 264911222}
   _exitObject: {fileID: 897349831}
   _levelController: {fileID: 376206028}
@@ -25995,6 +26016,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &726201910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 726201909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &728913429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29145,6 +29172,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &813776158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 813776157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &814224717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32977,6 +33010,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &894733150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 894733149}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &895022901
 GameObject:
   m_ObjectHideFlags: 0
@@ -33438,11 +33477,11 @@ MonoBehaviour:
   _isStartingRoom: 0
   _isFinishingRoom: 0
   _roomEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 726201910}
+  - {fileID: 388896675}
+  - {fileID: 1436013834}
+  - {fileID: 1523172417}
+  - {fileID: 813776158}
   _nextRoomDoor: {fileID: 1062867364}
   _exitObject: {fileID: 1182866232}
   _levelController: {fileID: 376206028}
@@ -33685,6 +33724,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &902023032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 902023031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &902394739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36381,12 +36426,12 @@ MonoBehaviour:
   _isStartingRoom: 0
   _isFinishingRoom: 0
   _roomEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1726628323}
+  - {fileID: 1495952505}
+  - {fileID: 1478677230}
+  - {fileID: 902023032}
+  - {fileID: 281622944}
+  - {fileID: 1475381025}
   _nextRoomDoor: {fileID: 1534874906}
   _exitObject: {fileID: 1755690085}
   _levelController: {fileID: 376206028}
@@ -41278,6 +41323,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1094762368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1094762367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1096763935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41437,6 +41488,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1098420156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1098420155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1099955836
 GameObject:
   m_ObjectHideFlags: 0
@@ -44814,6 +44871,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1171345387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1171345386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1173863989
 GameObject:
   m_ObjectHideFlags: 0
@@ -46130,6 +46193,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1207689604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1207689603}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1208507424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47034,6 +47103,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1225519062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1225519061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1226119288
 GameObject:
   m_ObjectHideFlags: 0
@@ -52712,6 +52787,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1371864746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1371864745}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1375631184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53280,6 +53361,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1389892870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1389892869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1390096494
 GameObject:
   m_ObjectHideFlags: 0
@@ -54036,6 +54123,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1404815654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404815653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1406025229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55766,6 +55859,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1436013834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1436013833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1436335282
 GameObject:
   m_ObjectHideFlags: 0
@@ -57160,13 +57259,13 @@ MonoBehaviour:
   _isStartingRoom: 0
   _isFinishingRoom: 0
   _roomEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1094762368}
+  - {fileID: 1098420156}
+  - {fileID: 569851779}
+  - {fileID: 1801854052}
+  - {fileID: 1389892870}
+  - {fileID: 1207689604}
+  - {fileID: 1371864746}
   _nextRoomDoor: {fileID: 417536252}
   _exitObject: {fileID: 1226119288}
   _levelController: {fileID: 376206028}
@@ -57797,6 +57896,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1475381025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1475381024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476236075
 GameObject:
   m_ObjectHideFlags: 0
@@ -57951,6 +58056,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1478677230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1478677229}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1479870286
 GameObject:
   m_ObjectHideFlags: 0
@@ -58576,6 +58687,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1495952505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1495952504}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1496204659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59810,6 +59927,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1523172417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1523172416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1527316715
 GameObject:
   m_ObjectHideFlags: 0
@@ -67658,6 +67781,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1726628323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1726628322}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1730335690
 GameObject:
   m_ObjectHideFlags: 0
@@ -68642,6 +68771,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1748328951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1748328950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1755184351
 GameObject:
   m_ObjectHideFlags: 0
@@ -69404,11 +69539,13 @@ MonoBehaviour:
   _objectName: ExitDoor
   _isExitDoor: 0
   _isLevelExitDoor: 1
+  _isDoorOpener: 0
   _display: {fileID: 1784747830}
   _primaryText: {fileID: 0}
   _secondaryText: {fileID: 0}
   _levelLoader: {fileID: 352840539}
   _weaponLocker: {fileID: 0}
+  _Door: {fileID: 0}
 --- !u!65 &1766603717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71138,6 +71275,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1801854052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1801854051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1803548841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73125,6 +73268,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb389cd992a23f418316e4053a862d1, type: 3}
+--- !u!1 &1856040731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906422446339411795, guid: cdb389cd992a23f418316e4053a862d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1856040730}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1856694925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73898,6 +74047,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525464c0ddaf38c42a486801b01fe912, type: 3}
+--- !u!1 &1867419433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7272232893800295408, guid: 525464c0ddaf38c42a486801b01fe912,
+    type: 3}
+  m_PrefabInstance: {fileID: 1867419432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1868121390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77483,11 +77638,13 @@ MonoBehaviour:
   _objectName: ExitDoor
   _isExitDoor: 0
   _isLevelExitDoor: 1
+  _isDoorOpener: 0
   _display: {fileID: 1087872229}
   _primaryText: {fileID: 0}
   _secondaryText: {fileID: 0}
   _levelLoader: {fileID: 352840539}
   _weaponLocker: {fileID: 0}
+  _Door: {fileID: 0}
 --- !u!65 &1989128487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78985,11 +79142,13 @@ MonoBehaviour:
   _objectName: ExitDoor
   _isExitDoor: 0
   _isLevelExitDoor: 1
+  _isDoorOpener: 0
   _display: {fileID: 1762125260}
   _primaryText: {fileID: 0}
   _secondaryText: {fileID: 0}
   _levelLoader: {fileID: 352840539}
   _weaponLocker: {fileID: 0}
+  _Door: {fileID: 0}
 --- !u!65 &2021050036
 BoxCollider:
   m_ObjectHideFlags: 0
