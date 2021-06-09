@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
     private CanvasGroup _tooltip = null;
 
 
+    public bool IsPoweredUp = false;
+
     #region GetComponented References
     private FirstPersonAIO _playerController;
 
@@ -123,6 +125,7 @@ public class Player : MonoBehaviour
         PlayerInputHandler.instance.onReloadButtonPressed += Reload;
         PlayerInputHandler.instance.onOneButtonPressed += SwapWeapons;
         PlayerInputHandler.instance.onTwoButtonPressed += SwapWeapons;
+        PlayerInputHandler.instance.onXButtonPressed += PowerUp;
 
         UpdateAmmoUI();
     }
@@ -431,8 +434,41 @@ public class Player : MonoBehaviour
         UpdateAmmoUI();
     }
 
+    private void PowerUp()
+    {
+        if (_powerUpAmount <= 0)
+            return;
+
+        _powerUpAmount--;
+        _powerUpAmountUIText.text = _powerUpAmount.ToString();
+
+        IsPoweredUp = true;
+        StartCoroutine(PowerUpDuration());
+    }
+
+    private IEnumerator PowerUpDuration()
+    {
+        yield return new WaitForSeconds(10f);
+        IsPoweredUp = false;
+    }
+
     private void TakeDamage(float damage)
     {
+        if (IsPoweredUp)
+        {
+            _currentHealth -= damage/2;
+            Mathf.Clamp(_currentHealth, 0, _maxHealth);
+            _healthBar.value = _currentHealth;
+
+            if (_currentHealth <= 0)
+            {
+                //Death
+                _playerMaster.CallEventPlayerDie();
+                Debug.Log("YOU HAVE DIED!");
+            }
+            return;
+        }
+
         _currentHealth -= damage;
         Mathf.Clamp(_currentHealth, 0, _maxHealth);
         _healthBar.value = _currentHealth;
@@ -457,8 +493,7 @@ public class Player : MonoBehaviour
         _healthPackAmount--;
         _healthPackAmountUIText.text = _healthPackAmount.ToString();
     }
-
-    
+ 
 
     private void OnDisable()
     {
@@ -468,7 +503,7 @@ public class Player : MonoBehaviour
         PlayerInputHandler.instance.onReloadButtonPressed -= Reload;
         PlayerInputHandler.instance.onOneButtonPressed -= SwapWeapons;
         PlayerInputHandler.instance.onTwoButtonPressed -= SwapWeapons;
+        PlayerInputHandler.instance.onXButtonPressed -= PowerUp;
     }
-
 
 }

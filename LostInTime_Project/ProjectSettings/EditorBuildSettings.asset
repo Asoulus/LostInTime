@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Future.unity
     guid: b319c1a73821a5349b398cd5043cd5e3
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 095459afbe9130940810e32d40b277e7
   m_configObjects: {}

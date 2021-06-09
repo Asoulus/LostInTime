@@ -41,7 +41,11 @@ public class EnemyRoomDetector : MonoBehaviour
     private void Start()
     {
         StartCoroutine(CheckDeath());
-        _exitObject.SetActive(false);
+
+        if (_exitObject!=null)
+        {
+            _exitObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

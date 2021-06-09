@@ -29,6 +29,12 @@ public class Enemy : MonoBehaviour
     private Slider _healthBar = null;
     [SerializeField]
     private GameObject _enemyUIRoot = null;
+    [SerializeField]
+    private GameObject _ammo = null;
+    [SerializeField]
+    private GameObject _powerUp = null;
+    [SerializeField]
+    private GameObject _healthPack = null;
 
     public float CurrentHealth
     {
@@ -71,13 +77,52 @@ public class Enemy : MonoBehaviour
         _agent.baseOffset = 0; //zeby mesh nie byl pod podlaga a byla wartość zmieniona zeby nie lewitowal
         _agent.enabled = false;
 
+        DropItems();
+
         _enemyMaster.CallEventEnemyDie();
 
         _enemyUIRoot.SetActive(false); //wylaczanie nazwy i zdrowia przeciwnika
 
         QuestHandler.instance.EnemyDeathEvent();
+        
 
         Destroy(gameObject, _despawnTime);
+    }
+
+    private void DropItems()
+    {
+        DropHealthPack();
+        DropAmmo();
+        DropPowerUp();
+    }
+
+    private void DropAmmo()
+    {
+        int tmp = Random.Range(0, 100);
+
+        if (tmp <= 50)
+        {
+            Instantiate(_ammo, this.transform.position, Quaternion.Euler(0, 0, 180));
+        }
+    }
+
+    private void DropHealthPack()
+    {
+        int tmp = Random.Range(0, 100);
+
+        if (tmp <= 25)
+        {
+            Instantiate(_healthPack, this.transform.position,Quaternion.Euler(0,0,180));
+        }
+    }
+    private void DropPowerUp()
+    {
+        int tmp = Random.Range(0, 100);
+
+        if (tmp <= 10)
+        {
+            Instantiate(_powerUp, this.transform.position, Quaternion.Euler(-90, 0, 0));
+        }
     }
 
     private void SetInitialReferences()

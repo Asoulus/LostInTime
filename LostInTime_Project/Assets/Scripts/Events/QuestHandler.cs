@@ -11,12 +11,21 @@ public class QuestHandler : MonoBehaviour
     }
 
     public event Action onEnemyDeath;
+    public event Action onResetQuests;
 
     public void EnemyDeathEvent()
     {
         if (onEnemyDeath != null)
         {
             onEnemyDeath();
+        }
+    }
+
+    public void ResetQuestsEvent()
+    {
+        if (onResetQuests != null)
+        {
+            onResetQuests();
         }
     }
 

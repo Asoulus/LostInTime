@@ -27,6 +27,7 @@ public class Quest : MonoBehaviour
     private void Start()
     {
         QuestHandler.instance.onEnemyDeath += UpdateQuest;
+        QuestHandler.instance.onResetQuests += ResetQuests;
 
         _prefsName = _inputPrefsName;
         _currentState = PlayerPrefs.GetInt(_prefsName);
@@ -85,8 +86,14 @@ public class Quest : MonoBehaviour
         }
     }
 
+    private void ResetQuests()
+    {
+        PlayerPrefs.SetInt(_prefsName, 0);
+    }
+
     private void OnDisable()
     {
         QuestHandler.instance.onEnemyDeath -= UpdateQuest;
+        QuestHandler.instance.onResetQuests -= ResetQuests;
     }
 }

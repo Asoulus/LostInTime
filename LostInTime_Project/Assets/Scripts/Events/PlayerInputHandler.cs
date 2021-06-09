@@ -13,8 +13,8 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action onInteractionButtonPressed;
     public event Action onLeftMouseButtonPressed;
     public event Action onEscapeButtonPressed;
-    //public event Action onSpaceButtonPressed;
-    //public event Action onEnterButtonPressed;
+    public event Action onXButtonPressed;
+    public event Action onZButtonPressed;
     public event Action onReloadButtonPressed;
     public event Action onQuestButtonPressed;
     public event Action<int> onOneButtonPressed;
@@ -27,6 +27,22 @@ public class PlayerInputHandler : MonoBehaviour
         if (onInteractionButtonPressed != null)
         {
             onInteractionButtonPressed();
+        }
+    }
+
+    public void XButtonPressed()
+    {
+        if (onXButtonPressed != null)
+        {
+            onXButtonPressed();
+        }
+    }
+
+    public void ZButtonPressed()
+    {
+        if (onZButtonPressed != null)
+        {
+            onZButtonPressed();
         }
     }
 
@@ -45,23 +61,7 @@ public class PlayerInputHandler : MonoBehaviour
             onEscapeButtonPressed();
         }
     }
-    /*
-    public void SpaceButtonPressed()
-    {
-        if (onSpaceButtonPressed != null)
-        {
-            onSpaceButtonPressed();
-        }
-    }
 
-    public void EnterButtonPressed()
-    {
-        if (onEnterButtonPressed != null)
-        {
-            onEnterButtonPressed();
-        }
-    }
-    */
     public void ReloadButtonPressed()
     {
         if (onReloadButtonPressed != null)

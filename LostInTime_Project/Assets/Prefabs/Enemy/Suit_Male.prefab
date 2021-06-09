@@ -1114,6 +1114,11 @@ MonoBehaviour:
   _nameField: {fileID: 2454839670304203312}
   _healthBar: {fileID: 2454839671664909504}
   _enemyUIRoot: {fileID: 2454839671614328215}
+  _ammo: {fileID: 3599314721978112599, guid: bc017945bcd5cb44f9008d8683e1fcf8, type: 3}
+  _powerUp: {fileID: 4860380521072673637, guid: 2064a03ddb6386246a2c420f0598b94b,
+    type: 3}
+  _healthPack: {fileID: 3908932741360542929, guid: 6404420e67230aa43bbc119de9868bbd,
+    type: 3}
 --- !u!195 &2454839670751068126
 NavMeshAgent:
   m_ObjectHideFlags: 0

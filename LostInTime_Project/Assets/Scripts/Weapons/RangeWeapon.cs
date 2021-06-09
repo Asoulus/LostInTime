@@ -138,6 +138,14 @@ public class RangeWeapon : MonoBehaviour
 
                 if (tmpBodyPart != null)
                 {
+                    if (Player.instance.IsPoweredUp)
+                    {
+                        tmpBodyPart.TakeDamage(_damage);
+                        ParticleSystem tmpEffect2 = Instantiate(_hitEffect, hit.point, transform.rotation);
+                        Destroy(tmpEffect2.gameObject, 2f);
+                        return;
+                    }
+
                     tmpBodyPart.TakeDamage(_damage);
                     ParticleSystem tmpEffect = Instantiate(_hitEffect, hit.point, transform.rotation);
                     Destroy(tmpEffect.gameObject, 2f);
@@ -182,10 +190,37 @@ public class RangeWeapon : MonoBehaviour
     {
         if (_isShotgun)
         {
+            
+            if (Player.instance.IsPoweredUp)
+            {
+                Projectile[] tmp;
+
+                tmp = _projectilePrefab.GetComponentsInChildren<Projectile>();
+
+                for (int i = 0; i < tmp.Length; i++)
+                {
+                    tmp[i].damage *= 2;
+                }
+
+                Quaternion tmpClusterQuat2 = Quaternion.Euler(-90, -90, 0);
+                GameObject tmpClusterGO2 = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpClusterQuat2);
+                tmpClusterGO2.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
+
+                for (int i = 0; i < tmp.Length; i++)
+                {
+                    tmp[i].damage = _damage;
+                }
+                _projectilePrefab.GetComponent<Projectile>().damage = _damage;
+                Destroy(tmpClusterGO2, _destroyDelay);
+
+                return;
+            }
+
             Quaternion tmpClusterQuat = Quaternion.Euler(-90, -90, 0);
             GameObject tmpClusterGO = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpClusterQuat);
-            //tmpGO.transform.parent = this.gameObject.transform;
             tmpClusterGO.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
+
+            _projectilePrefab.GetComponent<Projectile>().damage = _damage;
             Destroy(tmpClusterGO, _destroyDelay);
 
             return;
@@ -193,27 +228,45 @@ public class RangeWeapon : MonoBehaviour
 
         if (_isMelee)
         {
+            if (Player.instance.IsPoweredUp)
+            {
+                _projectilePrefab.GetComponent<Projectile>().damage *= 2;
+            }
+
             Quaternion tmpQuats = Quaternion.Euler(0, 0, 0);
             GameObject tmpGOs = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpQuats);
             tmpGOs.transform.parent = this.gameObject.transform;
             tmpGOs.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
+            _projectilePrefab.GetComponent<Projectile>().damage = _damage;
             Destroy(tmpGOs, _destroyDelay);
             return;
         }
 
         if (_isCrossbow)
         {
+            if (Player.instance.IsPoweredUp)
+            {
+                _projectilePrefab.GetComponent<Projectile>().damage *= 2;
+            }
+
             Quaternion tmpQuatC = Quaternion.Euler(0, -90, 90);
             GameObject tmpGOC = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpQuatC);
             tmpGOC.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
             tmpGOC.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.right * -5, ForceMode.Impulse);
+            _projectilePrefab.GetComponent<Projectile>().damage = _damage;
             Destroy(tmpGOC, _destroyDelay);
             return;
+        }
+
+        if (Player.instance.IsPoweredUp)
+        {
+            _projectilePrefab.GetComponent<Projectile>().damage *= 2;
         }
 
         Quaternion tmpQuat = Quaternion.Euler(0, -90, 90);
         GameObject tmpGO = Instantiate(_projectilePrefab, _firePoint.transform.position, transform.rotation * tmpQuat);
         tmpGO.GetComponent<Rigidbody>().AddForce(_playerCamera.transform.forward * _projectileSpeed, ForceMode.Impulse);
+        _projectilePrefab.GetComponent<Projectile>().damage = _damage;
         Destroy(tmpGO, _destroyDelay);
     }
 

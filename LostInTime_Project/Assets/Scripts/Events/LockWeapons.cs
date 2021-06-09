@@ -215,4 +215,12 @@ public class LockWeapons : MonoBehaviour
                 break;
         }
     }
+
+    public void NewGameLock()
+    {
+        PlayerPrefs.SetInt(_shotgunUnlock, 0);
+        PlayerPrefs.SetInt(_revolverUnlock, 0);
+        PlayerPrefs.SetInt(_orbGunUnlock, 0);
+        PlayerPrefs.SetInt(_ak47Unlock, 0);
+    }
 }

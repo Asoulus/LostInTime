@@ -46,7 +46,12 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Player_Master.instance.CallEventPlayerHeal(50f); //TODO Figure out amount
+            Player_Master.instance.CallEventPlayerHeal(50f); 
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            PlayerInputHandler.instance.XButtonPressed();
         }
     }
 }

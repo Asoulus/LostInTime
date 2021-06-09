@@ -2012,6 +2012,11 @@ MonoBehaviour:
   _nameField: {fileID: 4877356256977465395}
   _healthBar: {fileID: 4877356257217008323}
   _enemyUIRoot: {fileID: 4877356256834967737}
+  _ammo: {fileID: 3599314721978112599, guid: bc017945bcd5cb44f9008d8683e1fcf8, type: 3}
+  _powerUp: {fileID: 4860380521072673637, guid: 2064a03ddb6386246a2c420f0598b94b,
+    type: 3}
+  _healthPack: {fileID: 3908932741360542929, guid: 6404420e67230aa43bbc119de9868bbd,
+    type: 3}
 --- !u!1 &5877759381877731509
 GameObject:
   m_ObjectHideFlags: 0
