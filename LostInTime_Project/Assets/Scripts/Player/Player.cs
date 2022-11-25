@@ -37,6 +37,11 @@ public class Player : MonoBehaviour
     private AudioSource _clickSound = null;
     [SerializeField]
     private CanvasGroup _tooltip = null;
+    [SerializeField]
+    private CanvasGroup _pauseMenu = null;
+    [SerializeField]
+    private Button _continueButton = null;
+
 
 
     public bool IsPoweredUp = false;

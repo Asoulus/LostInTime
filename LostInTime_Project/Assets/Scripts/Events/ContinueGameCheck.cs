@@ -17,14 +17,12 @@ public class ContinueGameCheck : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("lol");
         if (PlayerPrefs.GetInt(_continueKey) == 0)
         {
             _continueButton.interactable = false;
         }
         else
         {
-            Debug.Log("lol");
             _continueButton.interactable = true;
         }
     }

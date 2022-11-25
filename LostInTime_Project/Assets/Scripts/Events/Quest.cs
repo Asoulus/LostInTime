@@ -26,11 +26,13 @@ public class Quest : MonoBehaviour
 
     private void Start()
     {
+        _prefsName = _inputPrefsName;
+
         QuestHandler.instance.onEnemyDeath += UpdateQuest;
         QuestHandler.instance.onResetQuests += ResetQuests;
 
-        _prefsName = _inputPrefsName;
         _currentState = PlayerPrefs.GetInt(_prefsName);
+        _currentState = PlayerPrefs.GetInt(_inputPrefsName);
     }
 
     private void UpdateQuest()
@@ -42,7 +44,7 @@ public class Quest : MonoBehaviour
         }
 
         _currentState ++;
-        PlayerPrefs.SetInt(_prefsName, _currentState);
+        //PlayerPrefs.SetInt(_prefsName, _currentState);
         CheckCompletion();
         UpdateUI();
     }
@@ -95,5 +97,10 @@ public class Quest : MonoBehaviour
     {
         QuestHandler.instance.onEnemyDeath -= UpdateQuest;
         QuestHandler.instance.onResetQuests -= ResetQuests;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt(_prefsName, _currentState);
     }
 }

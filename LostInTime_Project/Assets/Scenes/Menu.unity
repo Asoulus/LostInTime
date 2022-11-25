@@ -7818,6 +7818,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2106332941}
+        m_TargetAssemblyTypeName: ContinueGameCheck, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &953111198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13508,6 +13520,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2106332941}
+        m_TargetAssemblyTypeName: ContinueGameCheck, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1639497964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17432,6 +17456,7 @@ GameObject:
   - component: {fileID: 2106332940}
   - component: {fileID: 2106332941}
   - component: {fileID: 2106332942}
+  - component: {fileID: 2106332943}
   m_Layer: 0
   m_Name: '###EVENTS###'
   m_TagString: Untagged
@@ -17502,6 +17527,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f222bd3d2b8eab4ebd923cea5357c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2106332943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106332937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec34784cc0f29cc43b7461df8a0da0e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isShotgunUnlocked: 0
+  _isRevolverUnlocked: 0
+  _isAk47Unlocked: 0
+  _isSwordUnlocked: 0
+  _isOrbGunUnlocked: 0
+  _isCrossbowUnlocked: 0
+  _Shotgun: {fileID: 0}
+  _Ak47: {fileID: 0}
+  _Crossbow: {fileID: 0}
+  _Sword: {fileID: 0}
+  _OrbGun: {fileID: 0}
+  _Revolver: {fileID: 0}
+  _Arrow: {fileID: 0}
+  _blackMats: []
+  _isSpecial: 1
 --- !u!1 &2112731534
 GameObject:
   m_ObjectHideFlags: 0
