@@ -8,6 +8,15 @@ Three times across which gameplay takes place:
 * Modern
 * Future
 
+# Current state of the game:
+* Tutorial (which can be skipped)
+* Three diffrent levels and a player hub
+* Early version of quest system
+* Six diffrent weapon (two from each time period)
+* One Boss fight
+* Three diffrent enemies 
+* Two special variants of enemies (faster or stronger than regular version)
+
 # Preview
 
 ### [Trailer video](https://www.youtube.com/watch?v=8ja0p29xRpY&ab_channel=Hajcik)
