@@ -8,6 +8,12 @@ Three times across which gameplay takes place:
 * Modern
 * Future
 
+# Trailer
+https://www.youtube.com/watch?v=8ja0p29xRpY&ab_channel=Hajcik
+
+# Gameplay video
+https://www.youtube.com/watch?v=s91gCxBFUZU&ab_channel=Hajcik
+
 # Preview
 
 ### Logo
