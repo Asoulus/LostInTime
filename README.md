@@ -14,14 +14,16 @@ Three times across which gameplay takes place:
 
 ### [Gameplay video](https://www.youtube.com/watch?v=s91gCxBFUZU&ab_channel=Hajcik)
 
-### *Logo*
+---
+
+### **Logo**
 ![](Images/LOGO.png)
 ---
 
-### *Lobby*
+### **Lobby**
 ![](Images/Lobby.png)
 ---
 
-### *User Interface*
+### **User Interface**
 ![](Images/UI.png)
 ---
