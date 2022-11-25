@@ -10,18 +10,14 @@ Three times across which gameplay takes place:
 
 # Preview
 
-## Logo
+### Logo
 ![](Images/LOGO.png)
 ---
 
-## Trailer
-![](Images/Game_Trailer.mp4)
----
-
-## Lobby
+### Lobby
 ![](Images/Lobby.png)
 ---
 
-## User Interface
+### User Interface
 ![](Images/UI.png)
 ---
